@@ -4,6 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan')
 const dotenv = require('dotenv')
 
+
 // dot env configuration
 dotenv.config();
 
@@ -17,6 +18,9 @@ app.use(morgan('dev'))
 
 //route
 // URL => http://localhost:8080
+app.use('/api/v1/test', require("./routes/testRoutes"));
+
+
 app.get('/', (req, res) =>{
     return res
     .status(200)
