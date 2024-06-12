@@ -1,18 +1,32 @@
-const express = require('express')
+const express = require("express");
+const colors = require("colors");
+const cors = require('cors');
+const morgan = require('morgan')
+const dotenv = require('dotenv')
+
+// dot env configuration
+dotenv.config();
 
 //rest object
-const app = express()
+const app = express();
+
+//middlewares
+app.use(cors());
+app.use(express.json())
+app.use(morgan('dev'))
 
 //route
 // URL => http://localhost:8080
 app.get('/', (req, res) =>{
-    return res.status(200).send("<h1> bem vindo ao servidor do restaurante</h1>");
+    return res
+    .status(200)
+    .send("<h1> bem vindo ao servidor do restaurante</h1>");
 });
 
 //PORT
-const PORT = 8080
+const PORT = process.env.PORT || 8080;
 
 //listen
 app.listen(PORT, () => {
-    console.log("servidor rodando");
+    console.log(`Servidor rodando na porta ${PORT}`.white.bgMagenta);
 });
